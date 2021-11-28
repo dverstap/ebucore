@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ebucore="urn:ebu:metadata-schema:ebucore"
 	xmlns:dc="http://purl.org/dc/elements/1.1/" targetNamespace="urn:ebu:metadata-schema:ebucore"
-		xmlns:jxb="https://jakarta.ee/xml/ns/jaxb" jxb:version="3.0"
+		xmlns:jxb2="http://java.sun.com/xml/ns/jaxb" jxb2:version="2.1"
+		xmlns:jxb3="https://jakarta.ee/xml/ns/jaxb" jxb3:version="3.0"
 		elementFormDefault="qualified" version="1.10">
 <!--
 	<import namespace="http://www.w3.org/XML/1998/namespace"
@@ -784,7 +785,8 @@
 		<attribute name="manifestationId">
 			<annotation>
 				<appinfo>
-					<jxb:property name="manifestationIdAttr"/>
+					<jxb2:property name="manifestationIdAttr"/>
+					<jxb3:property name="manifestationIdAttr"/>
 				</appinfo>
 			</annotation>
 		</attribute>

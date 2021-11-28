@@ -12,46 +12,17 @@
         <java.version>11</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-
-        <!-- https://www.jesperdj.com/2018/09/30/jaxb-on-java-9-10-11-and-beyond/ -->
-
-        <!-- The BOM POM of GlassFish JAXB also defines the version of the jakarta API jar -->
-
-        <!-- JAXB2: https://javaee.github.io/jaxb-v2/doc/user-guide/ch03.html#deployment-maven-coordinates -->
-        <!--
-                <glassfish.jaxb.version>2.3.5</glassfish.jaxb.version>
-                <jaxb2-maven-plugin.version>2.5.0</jaxb2-maven-plugin.version>
-        -->
-
-        <!-- JAXB3: https://eclipse-ee4j.github.io/jaxb-ri/3.0.0/docs/ch03.html#deployment-maven-coordinates -->
-        <!-- JAXB3 doesn't work, not even with the forked jaxb-maven-plugin: -->
-        <glassfish.jaxb.version>3.0.2</glassfish.jaxb.version>
-        <!-- Tagged on GitHub, but not in Maven Central; see:
-             - https://github.com/mojohaus/jaxb2-maven-plugin/issues/183
-             - https://www.mail-archive.com/mojohaus-dev@googlegroups.com/msg00800.html
-        -->
-        <jaxb2-maven-plugin.version>3.0.0</jaxb2-maven-plugin.version>
         <junit.version>5.8.2</junit.version>
     </properties>
 
     <dependencies>
         <dependency>
+            <!-- The BOM POM of GlassFish JAXB also defines the version of the jakarta.xml.bind-api API jar:
+                 - with JAXB2, this contains the javax/xml/bind package
+                 - with JAXB3, this contains the jakarta/xml/bind package
+             -->
             <groupId>jakarta.xml.bind</groupId>
             <artifactId>jakarta.xml.bind-api</artifactId>
-        </dependency>
-        <!-- JAXB2: -->
-        <!--
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        -->
-        <!-- JAXB3: -->
-        <dependency>
-            <groupId>com.sun.xml.bind</groupId>
-            <artifactId>jaxb-impl</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -80,15 +51,12 @@
     </dependencyManagement>
 
     <build>
+        <testSourceDirectory>${jaxb.test.source.dir}</testSourceDirectory>
         <plugins>
             <plugin>
-                <!--
-                                <groupId>org.codehaus.mojo</groupId>
-                                <artifactId>jaxb2-maven-plugin</artifactId>
-                -->
-                <groupId>com.evolvedbinary.maven.mojohaus</groupId>
-                <artifactId>jaxb-maven-plugin</artifactId>
-                <version>${jaxb2-maven-plugin.version}</version>
+                <groupId>${jaxb-maven-plugin.groupId}</groupId>
+                <artifactId>${jaxb-maven-plugin.artifactId}</artifactId>
+                <version>${jaxb-maven-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>xsd-to-java</id>
@@ -98,11 +66,11 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <!--<packageName>ch.ebu.xml.core</packageName>-->
+                    <!-- TODO: leads to "duplicate class ElementType, which is defined in both ebucore and dublin core -->
+                    <!--<packageName>org.wintersleep.ebu.core.xml</packageName>-->
                     <sources>
                         <source>ebucore.xsd</source>
                     </sources>
-                    <skipXjc></skipXjc>
                 </configuration>
                 <dependencies>
                     <!-- Ensure that the maven plugin uses the exact same versions as we: -->
@@ -125,8 +93,66 @@
                 <inherited>true</inherited>
             </plugin>
         </plugins>
-
-
     </build>
+
+    <!-- 
+        JAXB and maven always was hell; here's good overview:
+        https://www.jesperdj.com/2018/09/30/jaxb-on-java-9-10-11-and-beyond/
+    -->
+
+    <profiles>
+
+        <profile>
+            <id>jaxb2</id>
+            <!-- JAXB2: https://javaee.github.io/jaxb-v2/doc/user-guide/ch03.html#deployment-maven-coordinates -->
+            <properties>
+                <glassfish.jaxb.version>2.3.5</glassfish.jaxb.version>
+                <jaxb-maven-plugin.groupId>org.codehaus.mojo</jaxb-maven-plugin.groupId>
+                <jaxb-maven-plugin.artifactId>jaxb2-maven-plugin</jaxb-maven-plugin.artifactId>
+                <jaxb-maven-plugin.version>2.5.0</jaxb-maven-plugin.version>
+                <jaxb.test.source.dir>src/test/jaxb2</jaxb.test.source.dir>
+            </properties>
+            <build>
+                <finalName>${project.artifactId}-jaxb2-${project.version}</finalName>
+            </build>
+            <dependencies>
+                <!-- JAXB2: The runtime is an org.glassfish jar: -->
+                <dependency>
+                    <groupId>org.glassfish.jaxb</groupId>
+                    <artifactId>jaxb-runtime</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>jaxb3</id>
+            <!-- JAXB3: https://eclipse-ee4j.github.io/jaxb-ri/3.0.0/docs/ch03.html#deployment-maven-coordinates -->
+            <properties>
+                <glassfish.jaxb.version>3.0.2</glassfish.jaxb.version>
+                <jaxb-maven-plugin.groupId>com.evolvedbinary.maven.mojohaus</jaxb-maven-plugin.groupId>
+                <jaxb-maven-plugin.artifactId>jaxb-maven-plugin</jaxb-maven-plugin.artifactId>
+                <jaxb-maven-plugin.version>3.0.0</jaxb-maven-plugin.version>
+                <!-- 3.0.0 for the CodeHaus plugin is tagged on GitHub, but not uploaded to Maven Central,
+                     because it did not pass release voting:
+                     - https://github.com/mojohaus/jaxb2-maven-plugin/issues/183
+                     - https://www.mail-archive.com/mojohaus-dev@googlegroups.com/msg00800.html
+                -->
+                <jaxb.test.source.dir>src/test/jaxb3</jaxb.test.source.dir>
+            </properties>
+            <build>
+                <finalName>${project.artifactId}-jaxb3-${project.version}</finalName>
+            </build>
+            <dependencies>
+                <!-- JAXB3: The runtime is again a com.sun jar: -->
+                <dependency>
+                    <groupId>com.sun.xml.bind</groupId>
+                    <artifactId>jaxb-impl</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+    </profiles>
 
 </project>

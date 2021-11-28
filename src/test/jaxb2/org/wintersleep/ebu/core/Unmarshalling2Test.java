@@ -2,14 +2,14 @@ package org.wintersleep.ebu.core;
 
 
 import ebu.metadata_schema.ebucore.EbuCoreMainType;
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.JAXBElement;
-import jakarta.xml.bind.JAXBException;
-import jakarta.xml.bind.Unmarshaller;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.purl.dc.elements._1.ObjectFactory;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +17,7 @@ import java.util.Objects;
 
 import static java.lang.String.format;
 
-public class UnmarshallingTest {
+public class Unmarshalling2Test {
 
     private final static JAXBContext context;
 
