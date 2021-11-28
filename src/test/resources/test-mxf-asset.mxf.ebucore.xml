@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated at 2021-11-28T18:21:13Z by MediaInfoLib - v19.09 -->
+<ebucore:ebuCoreMain xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ebucore="urn:ebu:metadata-schema:ebucore" xmlns:xalan="http://xml.apache.org/xalan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ebu:metadata-schema:ebucore https://www.ebu.ch/metadata/schemas/EBUCore/20171009/ebucore.xsd" version="1.8" writingLibraryName="MediaInfoLib" writingLibraryVersion="19.09" dateLastModified="2021-11-28" timeLastModified="18:21:13Z">
+	<ebucore:coreMetadata>
+		<ebucore:format>
+			<ebucore:videoFormat videoFormatName="MPEG Video" videoFormatVersionId="2">
+				<ebucore:width unit="pixel">1920</ebucore:width>
+				<ebucore:height unit="pixel">1080</ebucore:height>
+				<ebucore:frameRate factorNumerator="1000" factorDenominator="1001">24</ebucore:frameRate>
+				<ebucore:aspectRatio typeLabel="display">
+					<ebucore:factorNumerator>16</ebucore:factorNumerator>
+					<ebucore:factorDenominator>9</ebucore:factorDenominator>
+				</ebucore:aspectRatio>
+				<ebucore:videoEncoding typeLabel="MPEG-2 Video Main Profile @ High Level" typeLink="http://www.ebu.ch/metadata/cs/ebu_VideoCompressionCodeCS.xml#2.2.4" />
+				<ebucore:codec>
+					<ebucore:codecIdentifier>
+						<dc:identifier>0D01030102046001-0401020201030300</dc:identifier>
+					</ebucore:codecIdentifier>
+				</ebucore:codec>
+				<ebucore:bitRate>200000</ebucore:bitRate>
+				<ebucore:bitRateMode>variable</ebucore:bitRateMode>
+				<ebucore:scanningFormat>progressive</ebucore:scanningFormat>
+				<ebucore:videoTrack trackId="2" />
+				<ebucore:technicalAttributeString typeLabel="ColorSpace">YUV</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeString typeLabel="ChromaSubsampling">4:2:0</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeInteger typeLabel="StreamSize" unit="byte">705925</ebucore:technicalAttributeInteger>
+				<ebucore:technicalAttributeInteger typeLabel="Compression_Mode">Lossy</ebucore:technicalAttributeInteger>
+				<ebucore:technicalAttributeInteger typeLabel="BitDepth" unit="bit">8</ebucore:technicalAttributeInteger>
+				<ebucore:technicalAttributeString typeLabel="GOP">N=12</ebucore:technicalAttributeString>
+			</ebucore:videoFormat>
+			<ebucore:containerFormat containerFormatName="MXF" containerFormatVersionId="1.2">
+				<ebucore:containerEncoding formatLabel="MXF" />
+				<ebucore:technicalAttributeString typeLabel="FormatProfile">OP-1a</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeString typeLabel="FormatSettings">Closed / Complete</ebucore:technicalAttributeString>
+			</ebucore:containerFormat>
+			<ebucore:timecodeFormat timecodeFormatName="MXF TC">
+				<ebucore:timecodeStart>
+					<ebucore:timecode>00:00:00:00</ebucore:timecode>
+				</ebucore:timecodeStart>
+				<ebucore:timecodeTrack trackId="1" typeLabel="Material" />
+				<ebucore:technicalAttributeBoolean typeLabel="Stripped">true</ebucore:technicalAttributeBoolean>
+			</ebucore:timecodeFormat>
+			<ebucore:timecodeFormat timecodeFormatName="MXF TC">
+				<ebucore:timecodeStart>
+					<ebucore:timecode>00:00:00:00</ebucore:timecode>
+				</ebucore:timecodeStart>
+				<ebucore:timecodeTrack trackId="1" typeLabel="Source" />
+				<ebucore:technicalAttributeBoolean typeLabel="Stripped">true</ebucore:technicalAttributeBoolean>
+			</ebucore:timecodeFormat>
+			<ebucore:timecodeFormat timecodeFormatName="SMPTE TC">
+				<ebucore:timecodeStart>
+					<ebucore:timecode>00:00:00:00</ebucore:timecode>
+				</ebucore:timecodeStart>
+			</ebucore:timecodeFormat>
+			<ebucore:duration>
+				<ebucore:normalPlayTime>PT28.237S</ebucore:normalPlayTime>
+			</ebucore:duration>
+			<ebucore:fileSize>14463057</ebucore:fileSize>
+			<ebucore:fileName>test-mxf-asset.mxf</ebucore:fileName>
+			<ebucore:locator>test-mxf-asset.mxf</ebucore:locator>
+			<ebucore:technicalAttributeInteger typeLabel="OverallBitRate" unit="bps">4097619</ebucore:technicalAttributeInteger>
+			<ebucore:dateCreated startDate="0-00-00 00" startTime="00:00.000" />
+		</ebucore:format>
+	</ebucore:coreMetadata>
+</ebucore:ebuCoreMain>
+

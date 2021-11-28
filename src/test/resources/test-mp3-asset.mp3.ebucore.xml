@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated at 2021-11-28T18:21:13Z by MediaInfoLib - v19.09 -->
+<ebucore:ebuCoreMain xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ebucore="urn:ebu:metadata-schema:ebucore" xmlns:xalan="http://xml.apache.org/xalan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ebu:metadata-schema:ebucore https://www.ebu.ch/metadata/schemas/EBUCore/20171009/ebucore.xsd" version="1.8" writingLibraryName="MediaInfoLib" writingLibraryVersion="19.09" dateLastModified="2021-11-28" timeLastModified="18:21:13Z">
+	<ebucore:coreMetadata>
+		<ebucore:format>
+			<ebucore:audioFormat audioFormatName="MPEG Audio" audioFormatVersionId="1">
+				<ebucore:audioEncoding typeLabel="MPEG-1 Audio Layer III" typeLink="http://www.ebu.ch/metadata/cs/ebu_AudioCompressionCodeCS.xml#7.3" />
+				<ebucore:samplingRate>48000</ebucore:samplingRate>
+				<ebucore:bitRate>128000</ebucore:bitRate>
+				<ebucore:bitRateMode>variable</ebucore:bitRateMode>
+				<ebucore:channels>2</ebucore:channels>
+				<ebucore:technicalAttributeInteger typeLabel="StreamSize" unit="byte">240384</ebucore:technicalAttributeInteger>
+			</ebucore:audioFormat>
+			<ebucore:containerFormat containerFormatName="MPEG Audio">
+				<ebucore:containerEncoding formatLabel="MPEG Audio" />
+				<ebucore:technicalAttributeString typeLabel="WritingLibrary">Lavf58.29.100</ebucore:technicalAttributeString>
+			</ebucore:containerFormat>
+			<ebucore:duration>
+				<ebucore:normalPlayTime>PT15.024S</ebucore:normalPlayTime>
+			</ebucore:duration>
+			<ebucore:fileSize>240743</ebucore:fileSize>
+			<ebucore:fileName>test-mp3-asset.mp3</ebucore:fileName>
+			<ebucore:locator>test-mp3-asset.mp3</ebucore:locator>
+			<ebucore:technicalAttributeInteger typeLabel="OverallBitRate" unit="bps">128000</ebucore:technicalAttributeInteger>
+		</ebucore:format>
+	</ebucore:coreMetadata>
+</ebucore:ebuCoreMain>
+

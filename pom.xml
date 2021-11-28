@@ -1,0 +1,132 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.wintersleep.ebu</groupId>
+    <artifactId>wintersleep-ebu-core-xml</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>11</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+
+        <!-- https://www.jesperdj.com/2018/09/30/jaxb-on-java-9-10-11-and-beyond/ -->
+
+        <!-- The BOM POM of GlassFish JAXB also defines the version of the jakarta API jar -->
+
+        <!-- JAXB2: https://javaee.github.io/jaxb-v2/doc/user-guide/ch03.html#deployment-maven-coordinates -->
+        <!--
+                <glassfish.jaxb.version>2.3.5</glassfish.jaxb.version>
+                <jaxb2-maven-plugin.version>2.5.0</jaxb2-maven-plugin.version>
+        -->
+
+        <!-- JAXB3: https://eclipse-ee4j.github.io/jaxb-ri/3.0.0/docs/ch03.html#deployment-maven-coordinates -->
+        <!-- JAXB3 doesn't work, not even with the forked jaxb-maven-plugin: -->
+        <glassfish.jaxb.version>3.0.2</glassfish.jaxb.version>
+        <!-- Tagged on GitHub, but not in Maven Central; see:
+             - https://github.com/mojohaus/jaxb2-maven-plugin/issues/183
+             - https://www.mail-archive.com/mojohaus-dev@googlegroups.com/msg00800.html
+        -->
+        <jaxb2-maven-plugin.version>3.0.0</jaxb2-maven-plugin.version>
+        <junit.version>5.8.2</junit.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+        </dependency>
+        <!-- JAXB2: -->
+        <!--
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        -->
+        <!-- JAXB3: -->
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.glassfish.jaxb</groupId>
+                <artifactId>jaxb-bom</artifactId>
+                <version>${glassfish.jaxb.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!--
+                                <groupId>org.codehaus.mojo</groupId>
+                                <artifactId>jaxb2-maven-plugin</artifactId>
+                -->
+                <groupId>com.evolvedbinary.maven.mojohaus</groupId>
+                <artifactId>jaxb-maven-plugin</artifactId>
+                <version>${jaxb2-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>xsd-to-java</id>
+                        <goals>
+                            <goal>xjc</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--<packageName>ch.ebu.xml.core</packageName>-->
+                    <sources>
+                        <source>ebucore.xsd</source>
+                    </sources>
+                    <skipXjc></skipXjc>
+                </configuration>
+                <dependencies>
+                    <!-- Ensure that the maven plugin uses the exact same versions as we: -->
+                    <dependency>
+                        <groupId>org.glassfish.jaxb</groupId>
+                        <artifactId>jaxb-xjc</artifactId>
+                        <version>${glassfish.jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.glassfish.jaxb</groupId>
+                        <artifactId>jaxb-jxc</artifactId>
+                        <version>${glassfish.jaxb.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.glassfish.jaxb</groupId>
+                        <artifactId>jaxb-runtime</artifactId>
+                        <version>${glassfish.jaxb.version}</version>
+                    </dependency>
+                </dependencies>
+                <inherited>true</inherited>
+            </plugin>
+        </plugins>
+
+
+    </build>
+
+</project>

@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ebucore="urn:ebu:metadata-schema:ebucore"
 	xmlns:dc="http://purl.org/dc/elements/1.1/" targetNamespace="urn:ebu:metadata-schema:ebucore"
-	elementFormDefault="qualified" version="1.10">
+		xmlns:jxb="https://jakarta.ee/xml/ns/jaxb" jxb:version="3.0"
+		elementFormDefault="qualified" version="1.10">
+<!--
 	<import namespace="http://www.w3.org/XML/1998/namespace"
 		schemaLocation="http://www.w3.org/2001/xml.xsd"/>
 	<import namespace="http://purl.org/dc/elements/1.1/"
 		schemaLocation="http://dublincore.org/schemas/xmls/simpledc20021212.xsd"/>
-	<!--import namespace="http://www.w3.org/XML/1998/namespace"
+-->
+	<import namespace="http://www.w3.org/XML/1998/namespace"
 		schemaLocation="xml.xsd"/>
 	<import namespace="http://purl.org/dc/elements/1.1/"
-		schemaLocation="simpledc20021212.xsd"/-->
+		schemaLocation="simpledc20021212.xsd"/>
 	<annotation>
 		<documentation> The following Creative Commons Rights apply to the use of this EBU resource:
 			http://creativecommons.org/licenses/by-nc-sa/3.0/ Owner: EBU Technical Department
@@ -778,7 +781,13 @@
 		</sequence>
 		<attributeGroup ref="ebucore:typeGroup"/>
 		<attributeGroup ref="ebucore:formatGroup"/>
-		<attribute name="manifestationId"/>
+		<attribute name="manifestationId">
+			<annotation>
+				<appinfo>
+					<jxb:property name="manifestationIdAttr"/>
+				</appinfo>
+			</annotation>
+		</attribute>
 	</complexType>
 	<complexType name="emotionType">
 		<sequence>

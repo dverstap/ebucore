@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated at 2021-11-28T18:21:13Z by MediaInfoLib - v19.09 -->
+<ebucore:ebuCoreMain xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ebucore="urn:ebu:metadata-schema:ebucore" xmlns:xalan="http://xml.apache.org/xalan" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:ebu:metadata-schema:ebucore https://www.ebu.ch/metadata/schemas/EBUCore/20171009/ebucore.xsd" version="1.8" writingLibraryName="MediaInfoLib" writingLibraryVersion="19.09" dateLastModified="2021-11-28" timeLastModified="18:21:13Z">
+	<ebucore:coreMetadata>
+		<ebucore:format>
+			<ebucore:audioFormat audioFormatName="PCM">
+				<ebucore:audioEncoding typeLabel="PCM" typeLink="http://www.ebu.ch/metadata/cs/ebu_AudioCompressionCodeCS.xml#11" />
+				<ebucore:codec>
+					<ebucore:codecIdentifier>
+						<dc:identifier>1</dc:identifier>
+					</ebucore:codecIdentifier>
+				</ebucore:codec>
+				<ebucore:samplingRate>48000</ebucore:samplingRate>
+				<ebucore:sampleSize>16</ebucore:sampleSize>
+				<ebucore:bitRate>1536000</ebucore:bitRate>
+				<ebucore:bitRateMode>constant</ebucore:bitRateMode>
+				<ebucore:channels>2</ebucore:channels>
+				<ebucore:technicalAttributeString typeLabel="Endianness">Little</ebucore:technicalAttributeString>
+				<ebucore:technicalAttributeInteger typeLabel="StreamSize" unit="byte">2880000</ebucore:technicalAttributeInteger>
+			</ebucore:audioFormat>
+			<ebucore:containerFormat containerFormatName="Wave">
+				<ebucore:containerEncoding formatLabel="Wave" />
+			</ebucore:containerFormat>
+			<ebucore:duration>
+				<ebucore:normalPlayTime>PT15.000S</ebucore:normalPlayTime>
+			</ebucore:duration>
+			<ebucore:fileSize>2904786</ebucore:fileSize>
+			<ebucore:fileName>test-wav-asset.wav</ebucore:fileName>
+			<ebucore:locator>test-wav-asset.wav</ebucore:locator>
+			<ebucore:technicalAttributeInteger typeLabel="OverallBitRate" unit="bps">1549219</ebucore:technicalAttributeInteger>
+			<ebucore:dateCreated startDate="2018-07-31" startTime="19:20:23" />
+		</ebucore:format>
+	</ebucore:coreMetadata>
+</ebucore:ebuCoreMain>
+
